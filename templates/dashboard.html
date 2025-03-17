@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'style/dashboard.css' %}">
+{% endblock %}
+
+
+{% block title %}داشبورد{% endblock %}
+
+
+{% block content %}
+  <div class="dashboard-container" style="direction: rtl;">
+    <h2>خوش آمدید، {{ user.username }}</h2>
+    
+    <div class="orders-section">
+      <h3>سفارش‌های شما</h3>
+      <ul>
+        {% for order in orders %}
+          <li>
+            <strong>سفارش شماره {{ order.order_number }}</strong><br>
+            سفارش: {{ order.item_name }}<br>
+            تاریخ: {{ order.date }}<br>
+            تعداد: {{ order.quantity }}<br>
+            قیمت کل: {{ order.price }} تومان
+          </li>
+        {% empty %}
+          <li>شما هیچ سفارشی ثبت نکرده‌اید.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+    <div class="reservations-section">
+      <h3>رزروهای شما</h3>
+      <ul>
+        {% for reservation in reservations %}
+          <li>
+            <strong>رزرو برای {{ reservation.fullname }}</strong><br>
+            تاریخ: {{ reservation.reservation_date }}<br>
+            زمان: {{ reservation.reservation_time }}<br>
+            تعداد نفرات: {{ reservation.number_of_people }}<br>
+          </li>
+        {% empty %}
+          <li>شما هیچ رزروی ثبت نکرده‌اید.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'style/auction.css' %}">
+{% endblock %}
+
+{% block title %}{{ auction.name }}{% endblock %}
+
+{% block content %}
+<div class="auction-detail" style="direction: rtl;">
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <h1>{{ auction.name }}</h1>
+    <p>قیمت پایه: {{ auction.starting_price }} تومان</p>
+    <p>توضیحات: {{ auction.description }}</p>
+    <p>زمان پایان: {{ auction.end_date }}</p>
+
+    {% if auction_ended %}
+        <p style="color: red;">مزایده به پایان رسیده است.</p>
+        {% if winner %}
+            <p>🎉 برنده مزایده: <strong>{{ winner.username }}</strong></p>
+        {% else %}
+            <p>هیچ پیشنهاد دهنده‌ای وجود نداشت.</p>
+        {% endif %}
+    {% else %}
+        <p class="countdown">زمان باقی‌مانده: <span id="timer"></span></p>
+    {% endif %}
+
+    <h3>پیشنهادات کاربران</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>کاربر</th>
+                <th>مبلغ پیشنهادی (تومان)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bid in bids %}
+                <tr>
+                    <td>{{ bid.user.username }}</td>
+                    <td>{{ bid.amount }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2">هنوز پیشنهادی ثبت نشده است.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if not auction_ended %}
+        <!-- فرم ارسال پیشنهاد -->
+        {% if user.is_authenticated %}
+        <div class="bid-form">
+            <h3>ثبت پیشنهاد جدید</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="number" name="bid_amount" placeholder="مبلغ پیشنهادی (تومان)" required>
+                <button type="submit">ثبت پیشنهاد</button>
+            </form>
+        </div>
+        {% else %}
+            <p><a href="{% url 'login' %}">برای ثبت پیشنهاد وارد شوید.</a></p>
+        {% endif %}
+    {% endif %}
+</div>
+
+{% if not auction_ended %}
+<script>
+    var endDate = new Date("{{ auction.end_date|date:'Y-m-d H:i:s' }}").getTime();
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = endDate - now;
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds;
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").innerHTML = "مزایده به پایان رسید";
+        }
+    }, 1000);
+</script>
+{% endif %}
+{% endblock %}
+
+
+
+
+
+

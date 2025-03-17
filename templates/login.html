@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'style/login.css' %}">
+{% endblock %}
+
+{% block title %}ورود{% endblock %}
+
+{% block content %}
+    <section class="login-section" style="direction: rtl;">
+        <div class="login-container">
+            {% if messages %}
+                <div class="error-messages">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <form method="POST">
+                <h2>ورود</h2>
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="نام کاربری" value="{{ form.username.value|default:'' }}" required style="text-align: right;">
+                <input type="password" name="password" placeholder="رمز عبور" required style="text-align: right;">
+                
+                <button type="submit">ورود</button>
+            </form>
+            <p>حساب کاربری ندارید؟ <a href="{% url 'register' %}">ثبت نام</a></p>
+        </div>
+    </section>
+{% endblock %}

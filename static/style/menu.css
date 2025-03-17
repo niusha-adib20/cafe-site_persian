@@ -1,0 +1,250 @@
+/* Menu Styles */
+.menu-page {
+    padding: 40px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #d49d44, #f37404);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu Header */
+.menu-page h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Menu Section */
+.menu-section {
+    margin-bottom: 40px;  
+    padding: 20px;
+    border-bottom: 2px solid #ddd; 
+}
+
+.menu-section h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Menu Items */
+.menu-item {
+    display: inline-block;
+    width: 250px;
+    margin: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.menu-item:hover {
+    transform: translateY(-10px);  
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+.menu-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;  
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.menu-item img:hover {
+    transform: scale(1.05);
+}
+
+.menu-item h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.menu-item p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.menu-item button {
+    background-color: #f39c12;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.menu-item button:hover {
+    background-color: #e67e22;
+}
+
+/* Reservation Styles */
+.reservation {
+    padding: 40px 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.reservation a {
+    color: #ff7f50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.reservation a:hover {
+    color: #ff5722;
+}
+.reservation p{
+    font-size: 20px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.messages {
+    margin: 20px auto;
+    padding: 10px;
+    max-width: 500px;
+    text-align: center;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Quantity Input Styles */
+.quantity {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.quantity input[type="number"] {
+    width: 60px;
+    height: 35px;
+    text-align: center;
+    font-size: 16px;
+    border: 2px solid #ff5722;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #fff;
+    color: #333;
+}
+
+.quantity input[type="number"]:focus {
+    outline: none;
+    border-color: #e64a19;
+}
+
+button {
+    background-color: #ff5722;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e64a19;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .menu-page h2 {
+        font-size: 28px;
+    }
+
+    .menu-item {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .menu-item img {
+        height: 150px;
+    }
+
+    .menu-section h3 {
+        font-size: 24px;
+    }
+
+    .reservation p {
+        font-size: 18px;
+    }
+
+    footer p {
+        font-size: 12px;
+    }
+
+    .quantity input[type="number"] {
+        width: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-page {
+        padding: 20px 10px;
+    }
+
+    .menu-page h2 {
+        font-size: 24px;
+    }
+
+    .menu-item {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .menu-item img {
+        height: 120px;
+    }
+
+    .menu-section h3 {
+        font-size: 20px;
+    }
+
+    .quantity input[type="number"] {
+        width: 45px;
+        height: 30px;
+    }
+
+    footer p {
+        font-size: 10px;
+    }
+}

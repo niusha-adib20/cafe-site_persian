@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'style/menu.css' %}">
+{% endblock %}
+
+{% block title %}منو{% endblock %}
+
+{% block content %}
+    <!-- بخش منو -->
+    <section class="menu-page">
+        <h2>منو ما</h2>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- نوشیدنی‌های گرم -->
+        <div class="menu-section">
+            <h3>نوشیدنی‌های گرم</h3>
+            {% for item in hot_drinks %}
+            <div class="menu-item">
+                <img src="{{ item.image_url.url }}" alt="{{ item.name }}">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description }}</p>
+                <p><b>قیمت: {{ item.price }} تومان</b></p>
+                <form method="POST" action="{% url 'place_order' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="item_name" value="{{ item.name }}">
+                    <input type="hidden" name="price" value="{{ item.price }}">
+                    <div class="quantity">
+                        <input type="number" name="quantity" value="1" min="1" id="{{ item.name|lower }}-quantity">
+                    </div>
+                    {% if user.is_authenticated %}
+                        <button type="submit">افزودن به سبد خرید</button>
+                    {% else %}
+                        <button type="button" onclick="redirectToLogin()">افزودن به سبد خرید</button>
+                    {% endif %}
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- نوشیدنی‌های سرد -->
+        <div class="menu-section">
+            <h3>نوشیدنی‌های سرد</h3>
+            {% for item in cold_drinks %}
+            <div class="menu-item">
+                <img src="{{ item.image_url.url }}" alt="{{ item.name }}">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description }}</p>
+                <p><b>قیمت: {{ item.price }} تومان</b></p>
+                <form method="POST" action="{% url 'place_order' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="item_name" value="{{ item.name }}">
+                    <input type="hidden" name="price" value="{{ item.price }}">
+                    <div class="quantity">
+                        <input type="number" name="quantity" value="1" min="1" id="{{ item.name|lower }}-quantity">
+                    </div>
+                    {% if user.is_authenticated %}
+                        <button type="submit">افزودن به سبد خرید</button>
+                    {% else %}
+                        <button type="button" onclick="redirectToLogin()">افزودن به سبد خرید</button>
+                    {% endif %}
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- بستنی‌ها -->
+        <div class="menu-section">
+            <h3>بستنی‌ها</h3>
+            {% for item in ice_creams %}
+            <div class="menu-item">
+                <img src="{{ item.image_url.url }}" alt="{{ item.name }}">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description }}</p>
+                <p><b>قیمت: {{ item.price }} تومان</b></p>
+                <form method="POST" action="{% url 'place_order' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="item_name" value="{{ item.name }}">
+                    <input type="hidden" name="price" value="{{ item.price }}">
+                    <div class="quantity">
+                        <input type="number" name="quantity" value="1" min="1" id="{{ item.name|lower }}-quantity">
+                    </div>
+                    {% if user.is_authenticated %}
+                        <button type="submit">افزودن به سبد خرید</button>
+                    {% else %}
+                        <button type="button" onclick="redirectToLogin()">افزودن به سبد خرید</button>
+                    {% endif %}
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- کیک‌ها و شیرینی‌ها -->
+        <div class="menu-section">
+            <h3>کیک‌ها و شیرینی‌ها</h3>
+            {% for item in cakes %}
+            <div class="menu-item">
+                <img src="{{ item.image_url.url }}" alt="{{ item.name }}">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description }}</p>
+                <p><b>قیمت: {{ item.price }} تومان</b></p>
+                <form method="POST" action="{% url 'place_order' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="item_name" value="{{ item.name }}">
+                    <input type="hidden" name="price" value="{{ item.price }}">
+                    <div class="quantity">
+                        <input type="number" name="quantity" value="1" min="1" id="{{ item.name|lower }}-quantity">
+                    </div>
+                    {% if user.is_authenticated %}
+                        <button type="submit">افزودن به سبد خرید</button>
+                    {% else %}
+                        <button type="button" onclick="redirectToLogin()">افزودن به سبد خرید</button>
+                    {% endif %}
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+    </section>
+
+    <!-- بخش رزرو -->
+    <section class="reservation">
+        <h2>رزرو میز</h2>
+        {% if user.is_authenticated %}
+            <p>می‌خواهید میز رزرو کنید؟ <a href="{% url 'reservation' %}">رزرو کنید</a></p>
+        {% else %}
+            <p>می‌خواهید میز رزرو کنید؟ لطفاً <a href="{% url 'login' %}">وارد شوید</a></p>
+        {% endif %}
+    </section>
+
+    <footer>
+        <p>&copy;Our Coffee. تمامی حقوق محفوظ است</p>
+    </footer>
+
+    <script>
+        function redirectToLogin() {
+            alert("برای افزودن به سبد خرید باید وارد شوید!");
+            window.location.href = "{% url 'login' %}";
+        }
+    </script>
+
+{% endblock %}
+
+
+
+
+
+

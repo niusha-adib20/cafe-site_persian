@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}به کافه ما خوش آمدید{% endblock %}
+
+{% block content %}
+    <!-- بخش معرفی -->
+    <section class="hero">
+        <h1>به کافه ما خوش آمدید</h1>
+        <p>تجربه‌ای منحصربه‌فرد از طعم و کیفیت</p>
+    </section>
+    
+    <!-- درباره ما -->
+    <section class="about" style="direction: rtl;">
+        <h2>درباره ما</h2>
+        <p>
+            به <b>کافه ما</b> خوش آمدید، مکانی دنج که هر فنجان قهوه داستانی برای گفتن دارد.
+            ما با اشتیاق، تجربه‌ای عالی از قهوه را برای شما فراهم می‌کنیم، با استفاده از
+            دانه‌های باکیفیت که از بهترین مزارع جهان تهیه شده‌اند.
+        </p>
+        <p>
+            چه به دنبال مکانی آرام برای کار باشید، چه جایی برای گپ و گفت با دوستان،
+            یا فقط لحظه‌ای برای لذت بردن از عطر دلپذیر قهوه تازه دم‌شده، کافه ما
+            مقصد ایده‌آل شماست.
+        </p>
+        <p>
+            از نوشیدنی‌های اسپرسوی دست‌ساز گرفته تا شیرینی‌های خوشمزه و ترکیب‌های خاص،
+            ما گرما و راحتی یک کافه واقعی را برای شما به ارمغان می‌آوریم.
+            سری بزنید، جرعه‌ای بنوشید و احساس راحتی کنید!
+        </p>
+        <div class="img-coffee">
+            <div class="img">
+                <img src="{% static 'image/001.jpg' %}" alt="کافه ما">
+            </div>
+            <div class="img">
+                <img src="{% static 'image/002.jpg' %}" alt="کافه ما">
+            </div>
+            <div class="img">
+                <img src="{% static 'image/003.jpg' %}" alt="کافه ما">
+            </div>
+        </div>
+    </section>
+    
+    <!-- اطلاعات تماس -->
+    <footer id="contact" style="direction: rtl;">
+        <h2>تماس با ما</h2>
+        <p class="address"><b>کافه ما، خیابان ۴۲، ۴۳۰۴۳ نیویورک، نیویورک</b></p>
+        <p>همچنین می‌توانید از طریق تلفن یا ایمیل با ما در تماس باشید و پیام‌ها و نظرات خود را اینجا ارسال کنید:</p>
+        
+        <div class="contact-container">
+            <div class="info-contact">
+                <div class="info"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;نیویورک، آمریکا</div>
+                <div class="info"><i class="fas fa-phone-alt"></i>&nbsp;&nbsp;تلفن: ۰۰۵۵۳۱۲۳-۲۳۲۳</div>
+                <div class="info"><i class="fas fa-envelope"></i>&nbsp;&nbsp;ایمیل: ourCoffee@coffee.com</div>
+            </div>
+            <div class="info-type">
+                <form id="contactForm">
+                    <input type="text" id="name" name="name" placeholder="نام" required style="text-align: right;">
+                    <input type="email" id="email" name="email" placeholder="ایمیل" required style="text-align: right;">
+                    <textarea id="message" name="message" placeholder="پیام" required style="text-align: right;"></textarea>
+                    <input type="submit" value="ارسال">
+                </form>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
+

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'style/auction.css' %}">
+{% endblock %}
+
+{% block title %}لیست مزایده‌ها{% endblock %}
+
+{% block content %}
+<div class="auction-container">
+    <h1>لیست مزایده‌ها</h1>
+
+    {% for auction in auctions %}
+        <div class="auction-item" style="direction: rtl;">
+            <h2><a href="{% url 'auction_detail' auction.auction.id %}">{{ auction.auction.name }}</a></h2>
+            <p>قیمت پایه: {{ auction.auction.starting_price }} تومان</p>
+            <p>توضیحات: {{ auction.auction.description }}</p>
+
+            <p class="countdown">زمان باقی‌مانده: <span id="timer_{{ auction.auction.id }}"></span></p>
+
+            <!-- تایمر معکوس -->
+            <script>
+                (function() {
+                    var timerId = "timer_{{ auction.auction.id }}";
+                    var endDate = new Date("{{ auction.auction.end_date|date:'Y-m-d\TH:i:s' }}").getTime();
+
+                    function updateTimer() {
+                        var now = new Date().getTime();
+                        var distance = endDate - now;
+
+                        if (distance < 0) {
+                            var timerElement = document.getElementById(timerId);
+                            timerElement.innerHTML = "مزایده به پایان رسید";
+                            timerElement.style.color = "red"; 
+                            return;
+                        }
+
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        document.getElementById(timerId).innerHTML = hours + ":" + minutes + ":" + seconds;
+                    }
+
+                    updateTimer(); // اولین اجرا بدون تاخیر
+                    setInterval(updateTimer, 1000);
+                })();
+            </script>
+        </div>
+    {% empty %}
+        <p>هیچ مزایده‌ای یافت نشد.</p>
+    {% endfor %}
+</div>
+{% endblock %}
+

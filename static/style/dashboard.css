@@ -1,0 +1,122 @@
+/* Dashboard Container */
+.dashboard-container {
+    background-color: #f4f4f9;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dashboard-container h2 {
+    font-size: 1.55rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333;
+}
+
+/* Orders Section */
+.orders-section, .reservations-section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.orders-section h3, .reservations-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.orders-section ul, .reservations-section ul {
+    list-style-type: none;
+}
+
+.orders-section ul li, .reservations-section ul li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.orders-section ul li strong, .reservations-section ul li strong {
+    color: #333;
+}
+
+/* Hover Effect for Orders and Reservations */
+.orders-section ul li:hover, .reservations-section ul li:hover {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Empty List Message */
+.orders-section ul li.no-items, .reservations-section ul li.no-items {
+    font-style: italic;
+    color: #777;
+}
+
+/* Button Styling for Actions (like Cancel or Edit) */
+.btn-action {
+    background-color: #f39c12;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.btn-action:hover {
+    background-color: #e67e22;
+}
+
+/* Responsive Design */
+
+/* For Small Screens (max-width: 768px) */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 20px;
+    }
+
+    .dashboard-container h2 {
+        font-size: 1.2rem;
+    }
+
+    .orders-section h3, .reservations-section h3 {
+        font-size: 1.25rem;
+    }
+
+    .orders-section ul li, .reservations-section ul li {
+        font-size: 14px;
+    }
+
+    .btn-action {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+/* For Extra Small Screens (max-width: 480px) */
+@media (max-width: 480px) {
+    .dashboard-container h2 {
+        font-size: 1rem;
+    }
+
+    .orders-section h3, .reservations-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .orders-section ul li, .reservations-section ul li {
+        font-size: 13px;
+    }
+
+    .btn-action {
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+}
+
+
